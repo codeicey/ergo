@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ergo
+    env: docker
+    dockerfilePath: ./Dockerfile
+    startCommand: "" # The start command if any is required
+    instances: 1
+    envVars:
+      - key: VOLUME_PATH
+        value: /ircd
+    ports:
+      - name: tcp-6667
+        port: 6667
+      - name: tcp-6697
+        port: 6697
+    persistentDisks:
+      - name: data
+        mountPath: /ircd
+        sizeGB: 1  # Adjust the size as needed
